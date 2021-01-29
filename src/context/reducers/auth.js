@@ -5,17 +5,19 @@ import {
   LOGOUT_USER,
   REGISTER_FAIL,
   REGISTER_SUCCESS,
-} from './actionTypes';
+} from '../../constants/actionTypes';
 
 const auth = (state, {type, payload}) => {
   switch (type) {
     case REGISTER_SUCCESS:
+      console.log('registered');
       return {
         ...state,
         data: payload,
       };
 
     case LOGIN_SUCCESS:
+      console.log('loggedin');
       return {
         ...state,
         data: payload,
@@ -23,6 +25,7 @@ const auth = (state, {type, payload}) => {
       };
 
     case LOGOUT_USER:
+      console.log('loggedout');
       return {
         ...state,
         data: null,
@@ -31,6 +34,7 @@ const auth = (state, {type, payload}) => {
 
     case REGISTER_FAIL:
     case LOGIN_FAIL:
+      console.log('loginfailed');
       return {
         ...state,
         error: payload,
