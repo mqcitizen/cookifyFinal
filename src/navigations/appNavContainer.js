@@ -20,8 +20,8 @@ const AppNavContainer = () => {
     setTimeout(async () => {
       try {
         const user = await AsyncStorage.getItem('user');
-        console.log('app nav' + user);
         if (user) {
+          console.log('app nav ' + user);
           setAuthLoaded(true);
           setIsAuthenticated(true);
           loadData(JSON.parse(user))(authDispatch);
@@ -30,7 +30,8 @@ const AppNavContainer = () => {
           setIsAuthenticated(false);
         }
       } catch (error) {}
-    }, 1000);
+    }, 2000);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoggedIn]);
 
   return (
