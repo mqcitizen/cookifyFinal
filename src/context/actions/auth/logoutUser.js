@@ -5,6 +5,7 @@ export default () => async (dispatch) => {
   const keys = ['token', 'user'];
   try {
     await AsyncStorage.multiRemove(keys);
+    console.log('Removed token and user from asyncstorage');
   } catch (e) {
     console.log('Error removing from async storage');
   }

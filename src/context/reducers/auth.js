@@ -5,6 +5,7 @@ import {
   LOGOUT_USER,
   REGISTER_FAIL,
   REGISTER_SUCCESS,
+  LOAD_AUTH,
 } from '../../constants/actionTypes';
 
 const auth = (state, {type, payload}) => {
@@ -48,7 +49,12 @@ const auth = (state, {type, payload}) => {
         data: null,
         error: null,
       };
-
+    case LOAD_AUTH:
+      console.log('loaded data');
+      return {
+        ...state,
+        data: payload,
+      };
     default:
       return state;
   }

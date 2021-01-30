@@ -3,10 +3,9 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 import HomeNavigator from './HomeNavigator';
 import {LOGOUT, SETTINGS} from '../constants/routeNames';
 import {HOME_NAVIGATOR} from '../constants/routeNames';
-import {GlobalContext} from '../context/Provider';
 import {Pressable, Text, View} from 'react-native';
 
-const SideMenu = (navigation, authDispatch) => {
+const SideMenu = (navigation) => {
   return (
     <View>
       <Pressable
@@ -44,11 +43,10 @@ const SideMenu = (navigation, authDispatch) => {
 };
 const DrawerNavigator = () => {
   const Drawer = createDrawerNavigator();
-  const {authDispatch} = React.useContext(GlobalContext);
   return (
     <Drawer.Navigator
       drawerType="slide"
-      drawerContent={({navigation}) => SideMenu(navigation, authDispatch)}>
+      drawerContent={({navigation}) => SideMenu(navigation)}>
       <Drawer.Screen name={HOME_NAVIGATOR} component={HomeNavigator} />
     </Drawer.Navigator>
   );

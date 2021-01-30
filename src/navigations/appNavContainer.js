@@ -1,43 +1,43 @@
 import React, {useEffect, useContext} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import AuthNavigator from './AuthNavigator';
-import DrawerNavigator from './DrawerNavigator';
+import BottomTabNavigator from './BottomTabNavigator';
 import {GlobalContext} from '../context/Provider';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {ActivityIndicator} from 'react-native';
+import loadData from '../context/actions/auth/loadData';
 
 const AppNavContainer = () => {
   const {
     authState: {isLoggedIn},
+    authDispatch,
   } = useContext(GlobalContext);
 
   const [isAuthenticated, setIsAuthenticated] = React.useState(isLoggedIn);
   const [authLoaded, setAuthLoaded] = React.useState(false);
 
-  const getUser = async () => {
-    try {
-      const user = await AsyncStorage.getItem('user');
-      if (user && isLoggedIn) {
-        setAuthLoaded(true);
-
-        setIsAuthenticated(true);
-      } else {
-        setAuthLoaded(true);
-
-        setIsAuthenticated(false);
-      }
-    } catch (error) {}
-  };
-
   useEffect(() => {
-    getUser();
+    setTimeout(async () => {
+      try {
+        const user = await AsyncStorage.getItem('user');
+        console.log('app nav' + user);
+        if (user) {
+          setAuthLoaded(true);
+          setIsAuthenticated(true);
+          loadData(JSON.parse(user))(authDispatch);
+        } else {
+          setAuthLoaded(true);
+          setIsAuthenticated(false);
+        }
+      } catch (error) {}
+    }, 1000);
   }, [isLoggedIn]);
 
   return (
     <>
       {authLoaded ? (
         <NavigationContainer>
-          {isAuthenticated ? <DrawerNavigator /> : <AuthNavigator />}
+          {isAuthenticated ? <BottomTabNavigator /> : <AuthNavigator />}
         </NavigationContainer>
       ) : (
         <ActivityIndicator />

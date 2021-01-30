@@ -1,6 +1,7 @@
 //import AsyncStorage from '@react-native-async-storage/async-storage';
-import React from 'react';
+import React, {useContext} from 'react';
 import {Text, View} from 'react-native';
+import {GlobalContext} from '../context/Provider';
 
 // const gettoken = async () => {
 //   try {
@@ -9,12 +10,17 @@ import {Text, View} from 'react-native';
 //     console.log('Error getting token from asyncstorage');
 //   }
 // };
-const Settings = () => {
+
+const Home = () => {
+  const {
+    authState: {data},
+  } = useContext(GlobalContext);
+  console.log(JSON.parse(data).name);
   return (
     <View>
-      <Text>Welcome </Text>
+      <Text>Welcome to Cookify! </Text>
     </View>
   );
 };
 
-export default Settings;
+export default Home;
