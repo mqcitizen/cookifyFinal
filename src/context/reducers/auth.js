@@ -14,6 +14,7 @@ const auth = (state, {type, payload}) => {
       return {
         ...state,
         data: payload,
+        isLoggedIn: true,
       };
 
     case LOGIN_SUCCESS:
@@ -34,7 +35,8 @@ const auth = (state, {type, payload}) => {
 
     case REGISTER_FAIL:
     case LOGIN_FAIL:
-      console.log('loginfailed');
+      console.log('login/registerfailed');
+      console.log(payload);
       return {
         ...state,
         error: payload,

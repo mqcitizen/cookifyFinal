@@ -1,7 +1,6 @@
 import React, {useContext} from 'react';
 import {
   Alert,
-  Button,
   Image,
   StyleSheet,
   Text,
@@ -12,12 +11,19 @@ import {
 import colors from '../assets/theme/colors';
 import Container from './Container';
 import {useNavigation} from '@react-navigation/native';
-import {REGISTER} from '../constants/routeNames';
+import {LOGIN} from '../constants/routeNames';
 import {Password} from './PasswordTextBoxNative';
 import {GlobalContext} from '../context/Provider';
 import {CLEAR_AUTH_STATE} from '../constants/actionTypes';
+import {Button} from 'react-native-paper';
 
-const LoginComponent = ({form, onSubmit, onChange}) => {
+const RegisterComponent = ({
+  form,
+  onSubmit,
+  onChange,
+  isloading,
+  setIsLoading,
+}) => {
   const {navigate} = useNavigation();
   const {
     authState: {error},
@@ -26,13 +32,14 @@ const LoginComponent = ({form, onSubmit, onChange}) => {
   return (
     <Container>
       {error &&
-        Alert.alert('Error', error?.error, [
+        Alert.alert('Error', JSON.stringify(error), [
           {
             text: 'Cancel',
             onPress: () => {
               authDispatch({
                 type: CLEAR_AUTH_STATE,
               });
+              setIsLoading(false);
             },
           },
         ])}
@@ -45,9 +52,18 @@ const LoginComponent = ({form, onSubmit, onChange}) => {
 
       <View>
         <Text style={styles.title}>Welcome to Cookify</Text>
-        <Text style={styles.subTitle}>Please login here</Text>
+        <Text style={styles.subTitle}>Please Register here</Text>
 
         <View style={styles.form}>
+          <View style={styles.textInput}>
+            <TextInput
+              placeholder="Enter Name"
+              value={form.name || null}
+              onChangeText={(value) => {
+                onChange({name: 'name', value});
+              }}
+            />
+          </View>
           <View style={styles.textInput}>
             <TextInput
               placeholder="Enter Email"
@@ -65,15 +81,17 @@ const LoginComponent = ({form, onSubmit, onChange}) => {
             }}
             height={40}
           />
-          <Button title="Submit" onPress={onSubmit} />
+          <Button mode="contained" onPress={onSubmit} loading={isloading}>
+            Submit
+          </Button>
 
           <View style={styles.createSection}>
-            <Text style={styles.infoText}>Need a new account?</Text>
+            <Text style={styles.infoText}>Already have an account?</Text>
             <TouchableOpacity
               onPress={() => {
-                navigate(REGISTER);
+                navigate(LOGIN);
               }}>
-              <Text style={styles.linkBtn}>Register</Text>
+              <Text style={styles.linkBtn}>Login</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -82,7 +100,7 @@ const LoginComponent = ({form, onSubmit, onChange}) => {
   );
 };
 
-export default LoginComponent;
+export default RegisterComponent;
 
 const styles = StyleSheet.create({
   logoImage: {
