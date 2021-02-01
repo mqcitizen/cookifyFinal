@@ -54,6 +54,7 @@ const auth = (state, {type, payload}) => {
       return {
         ...state,
         data: payload,
+        isLoggedIn: true,
       };
     default:
       return state;
