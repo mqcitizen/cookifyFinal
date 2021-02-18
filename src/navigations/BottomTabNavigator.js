@@ -5,7 +5,8 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 import HomeNavigator from './HomeNavigator';
 import Settings from '../screens/Settings';
-import {HOME_NAVIGATOR, SETTINGS} from '../constants/routeNames';
+import Recipes from '../screens/Recipes';
+import {HOME_NAVIGATOR, SETTINGS, RECIPES} from '../constants/routeNames';
 
 const BottomTab = createMaterialBottomTabNavigator();
 
@@ -24,10 +25,10 @@ const BottomTabNavigator = () => {
         }}
       />
       <BottomTab.Screen
-        name={SETTINGS}
-        component={Settings}
+        name={RECIPES}
+        component={Recipes}
         options={{
-          tabBarLabel: 'Settings',
+          tabBarLabel: 'Recipes',
           tabBarColor: '#1f65ff',
           tabBarIcon: ({color}) => (
             <Icon name="ios-notifications" color={color} size={26} />
@@ -35,7 +36,7 @@ const BottomTabNavigator = () => {
         }}
       />
       <BottomTab.Screen
-        name="Settings1"
+        name={SETTINGS}
         component={Settings}
         options={{
           tabBarLabel: 'Settings',

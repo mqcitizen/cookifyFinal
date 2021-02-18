@@ -24,7 +24,7 @@ export default ({email, password, name}) => (dispatch) => {
         type: REGISTER_FAIL,
         payload: err.response
           ? err.response.data
-          : {error: 'Something went wrong, try agin'},
+          : {error: 'Something went wrong, try again'},
       });
     });
 };

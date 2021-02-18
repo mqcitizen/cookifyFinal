@@ -55,6 +55,7 @@ const LoginComponent = ({form, onSubmit, onChange}) => {
               onChangeText={(value) => {
                 onChange({name: 'email', value});
               }}
+              keyboardType={'email-address'}
             />
           </View>
           <Password
