@@ -2,11 +2,18 @@ import React from 'react';
 
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import Icon from 'react-native-vector-icons/Ionicons';
+import MIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import HomeNavigator from './HomeNavigator';
 import Settings from '../screens/Settings';
-import Recipes from '../screens/Recipes';
-import {HOME_NAVIGATOR, SETTINGS, RECIPES} from '../constants/routeNames';
+import SearchRecipes from '../screens/SearchRecipes';
+import History from '../screens/History';
+import {
+  HOME_NAVIGATOR,
+  SETTINGS,
+  HISTORY,
+  SEARCHRECIPES,
+} from '../constants/routeNames';
 
 const BottomTab = createMaterialBottomTabNavigator();
 
@@ -25,13 +32,24 @@ const BottomTabNavigator = () => {
         }}
       />
       <BottomTab.Screen
-        name={RECIPES}
-        component={Recipes}
+        name={SEARCHRECIPES}
+        component={SearchRecipes}
         options={{
-          tabBarLabel: 'Recipes',
+          tabBarLabel: 'Search',
           tabBarColor: '#1f65ff',
           tabBarIcon: ({color}) => (
-            <Icon name="ios-notifications" color={color} size={26} />
+            <Icon name="ios-search-outline" color={color} size={26} />
+          ),
+        }}
+      />
+      <BottomTab.Screen
+        name={HISTORY}
+        component={History}
+        options={{
+          tabBarLabel: 'History',
+          tabBarColor: '#694fad',
+          tabBarIcon: ({color}) => (
+            <MIcon name="history" color={color} size={26} />
           ),
         }}
       />
@@ -40,20 +58,9 @@ const BottomTabNavigator = () => {
         component={Settings}
         options={{
           tabBarLabel: 'Settings',
-          tabBarColor: '#694fad',
-          tabBarIcon: ({color}) => (
-            <Icon name="ios-person" color={color} size={26} />
-          ),
-        }}
-      />
-      <BottomTab.Screen
-        name="Settings2"
-        component={Settings}
-        options={{
-          tabBarLabel: 'Settings',
           tabBarColor: '#d02860',
           tabBarIcon: ({color}) => (
-            <Icon name="ios-aperture" color={color} size={26} />
+            <Icon name="ios-settings-outline" color={color} size={26} />
           ),
         }}
       />

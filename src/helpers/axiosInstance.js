@@ -4,7 +4,7 @@ import axios from 'axios';
 let headers = {'Content-Type': 'application/json', Accept: 'application/json'};
 
 const axiosInstance = axios.create({
-  baseURL: 'http://192.168.1.6:5000/',
+  baseURL: 'http://192.168.1.7:5000/',
   headers,
 });
 
@@ -32,7 +32,7 @@ axiosInstance.interceptors.response.use(
     if (!error.response) {
       return new Promise((resolve, reject) => {
         console.log('Axios 1');
-        console.log(error);
+        console.log(error?.error);
         reject(error);
       });
     }
@@ -41,7 +41,7 @@ axiosInstance.interceptors.response.use(
       console.log('Axios 403');
     } else {
       return new Promise((resolve, reject) => {
-        console.log('Axios 0');
+        console.log('Axios 0 ' + JSON.stringify(error.response));
         reject(error);
       });
     }

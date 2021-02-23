@@ -5,7 +5,7 @@ import getIngredients from '../recipe/getIngredients';
 export default (ingredient) => (dispatch) => {
   console.log(ingredient);
   axiosInstance
-    .post('/addIngredient', {ingredient: ingredient})
+    .post('/deleteIngredient', {ingredient: ingredient})
     .then((res) => {
       getIngredients(dispatch);
     })
