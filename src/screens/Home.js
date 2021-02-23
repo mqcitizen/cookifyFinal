@@ -172,7 +172,9 @@ const Home = ({navigation}) => {
       <View style={styles.btn}>
         <Button
           onPress={() => {
-            navigation.navigate(RECIPES, {list: iListArray});
+            if (iListArray.length > 0) {
+              navigation.navigate(RECIPES, {list: iListArray});
+            }
           }}
           icon="text-box-search-outline">
           Search

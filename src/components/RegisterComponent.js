@@ -62,6 +62,7 @@ const RegisterComponent = ({
               onChangeText={(value) => {
                 onChange({name: 'name', value});
               }}
+              keyboardType={'default'}
             />
           </View>
           <View style={styles.textInput}>
@@ -71,6 +72,7 @@ const RegisterComponent = ({
               onChangeText={(value) => {
                 onChange({name: 'email', value});
               }}
+              keyboardType={'email-address'}
             />
           </View>
           <Password

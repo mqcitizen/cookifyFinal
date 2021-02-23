@@ -8,8 +8,11 @@ const Directions = ({route}) => {
   return (
     <>
       <AutoHeightWebView
-        style={{width: Dimensions.get('window').width, marginHorizontal: 2}}
+        style={{width: Dimensions.get('window').width, marginHorizontal: 5}}
         scalesPageToFit={false}
+        showsVerticalScrollIndicator={true}
+        showsHorizontalScrollIndicator={true}
+        scrollEnabledWithZoomedin={true}
         source={{uri: url || 'https://www.google.com'}}
       />
     </>

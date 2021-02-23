@@ -25,6 +25,7 @@ const Item = ({title, img, item, list, navigation}) => (
       icon={'skew-more'}
       onPress={() => {
         navigation.navigate(RECIPEDETAIL, {list: list, ingredient: item});
+        console.log(item._id);
       }}>
       View Details
     </Button>
