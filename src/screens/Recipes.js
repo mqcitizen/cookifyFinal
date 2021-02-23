@@ -3,8 +3,9 @@ import {ActivityIndicator, Image, StyleSheet, Text, View} from 'react-native';
 import {FlatList} from 'react-native-gesture-handler';
 import {Button} from 'react-native-paper';
 import axiosInstance from '../helpers/axiosInstance';
+import {RECIPEDETAIL} from '../constants/routeNames';
 
-const Item = ({title, img, item, list}) => (
+const Item = ({title, img, item, list, navigation}) => (
   <View style={styles.item}>
     <Image style={styles.logo} source={{uri: img}} />
     <Text style={styles.title}>{title}</Text>
@@ -20,7 +21,11 @@ const Item = ({title, img, item, list}) => (
         })}
       </View>
     </View>
-    <Button icon={'skew-more'} onPress={() => {}}>
+    <Button
+      icon={'skew-more'}
+      onPress={() => {
+        navigation.navigate(RECIPEDETAIL, {list: list, ingredient: item});
+      }}>
       View Details
     </Button>
   </View>
@@ -38,6 +43,7 @@ const Recipes = ({route, navigation}) => {
         img={item.images[0].hostedLargeUrl}
         item={item}
         list={list}
+        navigation={navigation}
       />
     );
   };
@@ -46,7 +52,6 @@ const Recipes = ({route, navigation}) => {
     axiosInstance
       .post('/findRecipes', {list: list})
       .then((res) => {
-        console.log(res.data.recipesList);
         setRecipeList(res.data.recipesList);
       })
       .catch((err) => {

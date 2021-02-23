@@ -6,13 +6,13 @@ import MIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import HomeNavigator from './HomeNavigator';
 import Settings from '../screens/Settings';
-import SearchRecipes from '../screens/SearchRecipes';
+import SearchNavigator from './SearchNavigator';
 import History from '../screens/History';
 import {
   HOME_NAVIGATOR,
   SETTINGS,
   HISTORY,
-  SEARCHRECIPES,
+  SEARCH_NAVIGATOR,
 } from '../constants/routeNames';
 
 const BottomTab = createMaterialBottomTabNavigator();
@@ -32,8 +32,8 @@ const BottomTabNavigator = () => {
         }}
       />
       <BottomTab.Screen
-        name={SEARCHRECIPES}
-        component={SearchRecipes}
+        name={SEARCH_NAVIGATOR}
+        component={SearchNavigator}
         options={{
           tabBarLabel: 'Search',
           tabBarColor: '#1f65ff',
